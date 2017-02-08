@@ -1,0 +1,7 @@
+Temp/
+Library/
+.idea/
+
+*proj
+*.sln
+*.userprefs
