@@ -10,7 +10,7 @@ public class Move : MonoBehaviour {
         var position = new Vector3(OutX, OutY);
         var rotation = new Quaternion(0, 0, 0, 0);
         var otherCube = Instantiate(gameObject, position, rotation);
-        otherCube.name = string.Format("Card%s", Count);
+        otherCube.name = string.Format("Card {0}", Count);
         OutX += 1;
         if (OutX > 5.1) {
             OutX = -5;
