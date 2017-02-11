@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Entity {
@@ -7,20 +8,17 @@ namespace Entity {
         private List<Card> _cards;
 
         private void InitializeCards() {
-            _cards = new List<Card>(136);
-            for (var suit = 1; suit <= 3; suit++) {
-                for (var size = 1; size <= 9; size++) {
-                    for (var seq = 1; seq <= 4; seq++) {
-                        _cards.Add(new Card(suit, size, seq));
-                    }
-                }
+            _cards = new List<Card>(Constants.DeckSize);
+            for (var serial = 0; serial < Constants.DeckSize; serial++) {
+                _cards.Add(new Card(serial));
             }
-            for (var size = 1; size <= 7; size++) {
-                for (var seq = 1; seq <= 4; seq++) {
-                    _cards.Add(new Card(4, size, seq));
-                }
+            var random = new Random();
+            for (var i = 0; i < Constants.DeckSize; i++) {
+                var j = random.Next(Constants.DeckSize);
+                var tmp = _cards[i];
+                _cards[i] = _cards[j];
+                _cards[j] = tmp;
             }
-            // TODO randomize _cards
         }
 
         public Deck() {

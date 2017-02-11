@@ -1,19 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Entity {
     public class Hand {
-        public const int Size = 13;
         private readonly List<Card> _cards;
 
         public Hand(Deck deck) {
-            _cards = new List<Card>(Size);
-            for (var i = 0; i < Size; i++) {
+            _cards = new List<Card>(Constants.HandSize);
+            for (var i = 0; i < Constants.HandSize; i++) {
                 Add(deck.Draw());
             }
         }
 
-        public void Replace(int position, Card card) {
-            _cards.RemoveAt(position);
+        public void Replace(int serial, Card card) {
+            _cards.RemoveAll(c => c.GetSerial() == serial);
             Add(card);
         }
 
@@ -23,6 +24,7 @@ namespace Entity {
 
         private void Add(Card card) {
             _cards.Add(card);
+            _cards.Sort((card1, card2) => card1.GetSerial() - card2.GetSerial());
         }
     }
 }

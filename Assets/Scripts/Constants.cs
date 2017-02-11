@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 
 public class Constants {
-    private static GameObject _adam;
-    private static GameObject _eve;
-    private static GameObject _god;
+    public const int DeckSize = 136;
+    public const int HandSize = 13;
 
     public static GameObject Adam() {
         _adam = _adam ?? GameObject.Find("Adam");
@@ -19,4 +18,8 @@ public class Constants {
         _god = _god ?? GameObject.Find("God");
         return _god;
     }
+
+    private static GameObject _adam;
+    private static GameObject _eve;
+    private static GameObject _god;
 }

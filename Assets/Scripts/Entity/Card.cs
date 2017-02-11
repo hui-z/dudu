@@ -4,6 +4,12 @@
         private readonly int _rank;
         private readonly int _seq;
 
+        public Card(int serial) {
+            _suit = (serial / 36) + 1;
+            _rank = (serial / 4) % 9 + 1;
+            _seq = serial % 4 + 1;
+        }
+
         public Card(int suit, int rank, int seq) {
             _suit = suit;
             _rank = rank;
