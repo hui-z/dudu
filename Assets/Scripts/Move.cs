@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Specialized;
-using System.Text;
+﻿using System.Text;
 using Entity;
 using UnityEngine;
 
@@ -10,14 +8,6 @@ public class Move : MonoBehaviour {
     public int Count = 0;
     private Deck _deck;
     private Hand _hand;
-
-    private void Start() {
-        _deck = new Deck();
-        _hand = new Hand();
-        for (var i = 0; i < 13; i++) {
-            _hand.Add(_deck.Draw());
-        }
-    }
 
     private void OnMouseDown() {
         if (_deck.GetSize() > 0) {

@@ -2,14 +2,14 @@
 
 namespace Entity {
     public class Hand {
+        public const int Size = 13;
         private readonly List<Card> _cards;
 
-        public Hand() {
-            _cards = new List<Card>(13);
-        }
-
-        public void Add(Card card) {
-            _cards.Add(card);
+        public Hand(Deck deck) {
+            _cards = new List<Card>(Size);
+            for (var i = 0; i < Size; i++) {
+                Add(deck.Draw());
+            }
         }
 
         public void Replace(int position, Card card) {
@@ -19,6 +19,10 @@ namespace Entity {
 
         public List<Card> GetCards() {
             return _cards;
+        }
+
+        private void Add(Card card) {
+            _cards.Add(card);
         }
     }
 }
