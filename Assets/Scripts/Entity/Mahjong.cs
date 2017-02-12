@@ -18,11 +18,11 @@ namespace Entity {
             _text.GetComponent<TextMesh>().text = card.ToString();
         }
 
-        public void MoveTo(Vector3 position, Quaternion rotation) {
-            _cube.transform.position = position;
-            _cube.transform.rotation = rotation;
-            _text.transform.position = position;
-            _text.transform.rotation = rotation;
+        public void MoveTo(Location loc) {
+            _cube.transform.position = loc.Pos;
+            _cube.transform.rotation = loc.Rot;
+            _text.transform.position = loc.Pos;
+            _text.transform.rotation = loc.Rot;
         }
 
         public void HandIn(int i) {

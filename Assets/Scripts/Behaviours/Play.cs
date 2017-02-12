@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Entity;
 using UnityEngine;
 
@@ -21,10 +20,9 @@ namespace Behaviours {
         }
 
         public void DropCard(int index) {
-            _dropCount += 1;
             var serial = _hand.GetCards()[index].Serial;
             var mahjong = _mahjongs[serial];
-            mahjong.MoveTo(new Vector3(-7 + _dropCount, -3, 5), Quaternion.Euler(90, 0, 0));
+            mahjong.MoveTo(Location.GetGroundLocation(_dropCount++));
             mahjong.HandOut();
             _hand.Replace(index, _deck.Draw());
             print(string.Format("Dropping card, count {0}, card |{1}|", _dropCount, mahjong));
@@ -33,12 +31,11 @@ namespace Behaviours {
 
         private void DisplayHand() {
             var cards = _hand.GetCards();
-            print(string.Format("Displaying hand, size {0}, content [{1}]", cards.Count,
-                string.Join(", ", cards.Select(x => x.Serial + x.ToString()).ToArray())));
+            print(string.Format("Displaying hand, size {0}, content [{1}]", cards.Count, _hand));
             for (var i = 0; i < cards.Count; i++) {
                 var card = cards[i];
                 var mahjong = _mahjongs[card.Serial];
-                mahjong.MoveTo(new Vector3(-7.0f + 1.05f * i, -4.0f), Quaternion.Euler(0, 0, 0));
+                mahjong.MoveTo(Location.GetDeckLocation(i));
                 mahjong.HandIn(i);
             }
         }

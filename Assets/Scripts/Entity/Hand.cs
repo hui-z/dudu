@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Entity {
     public class Hand {
@@ -23,6 +24,10 @@ namespace Entity {
         private void Add(Card card) {
             _cards.Add(card);
             _cards.Sort((card1, card2) => card1.Serial - card2.Serial);
+        }
+
+        public override string ToString() {
+            return string.Join(" ", _cards.Select(x => string.Format("[{0} {1}]", x.Serial, x.ToString())).ToArray());
         }
     }
 }

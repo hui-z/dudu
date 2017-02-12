@@ -33,5 +33,9 @@ namespace Entity {
         public Card Draw() {
             return _cards[_head++];
         }
+
+        public override string ToString() {
+            return string.Join(" ", _cards.Select(x => string.Format("[{0} {1}]", x.Serial, x.ToString())).ToArray());
+        }
     }
 }
