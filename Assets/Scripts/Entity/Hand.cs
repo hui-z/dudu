@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Entity {
     public class Hand {
@@ -14,8 +13,17 @@ namespace Entity {
         }
 
         public void Replace(int serial, Card card) {
-            _cards.RemoveAll(c => c.GetSerial() == serial);
-            Add(card);
+            var replaced = false;
+            for (var i = _cards.Count - 1; i > 0; i--) {
+                if (_cards[i].Serial == serial) {
+                    _cards.RemoveAt(i);
+                    Add(card);
+                    replaced = true;
+                }
+            }
+            if (!replaced) {
+                Debug.Log("not replaced " + serial);
+            }
         }
 
         public List<Card> GetCards() {
@@ -24,7 +32,7 @@ namespace Entity {
 
         private void Add(Card card) {
             _cards.Add(card);
-            _cards.Sort((card1, card2) => card1.GetSerial() - card2.GetSerial());
+            _cards.Sort((card1, card2) => card1.Serial - card2.Serial);
         }
     }
 }

@@ -16,8 +16,8 @@
             _seq = seq;
         }
 
-        public int GetSerial() {
-            return (_seq - 1) + (_rank - 1) * 4 + (_suit - 1) * 34;
+        public int Serial {
+            get { return (_seq - 1) + (_rank - 1) * 4 + (_suit - 1) * 34; }
         }
 
         public override string ToString() {
@@ -29,14 +29,6 @@
                 string[] rankNames = {"東", "南", "西", "北", "  ", "發", "中"};
                 return rankNames[_rank - 1];
             }
-        }
-
-        public override bool Equals(object obj) {
-            return obj != null && obj.GetType() == GetType() && GetSerial() == ((Card) obj).GetSerial();
-        }
-
-        public override int GetHashCode() {
-            return GetSerial();
         }
     }
 }

@@ -2,8 +2,10 @@
 
 namespace Behaviours {
     public class DropCard : MonoBehaviour {
+        public int Serial;
+
         private void OnMouseDown() {
-            Constants.God().GetComponent<Play>().DropCard(gameObject.name);
+            Dudu.God.GetComponent<Play>().DropCard(Serial);
         }
     }
 }
