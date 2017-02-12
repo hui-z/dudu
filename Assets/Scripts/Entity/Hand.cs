@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
 namespace Entity {
     public class Hand {
@@ -12,18 +11,9 @@ namespace Entity {
             }
         }
 
-        public void Replace(int serial, Card card) {
-            var replaced = false;
-            for (var i = _cards.Count - 1; i > 0; i--) {
-                if (_cards[i].Serial == serial) {
-                    _cards.RemoveAt(i);
-                    Add(card);
-                    replaced = true;
-                }
-            }
-            if (!replaced) {
-                Debug.Log("not replaced " + serial);
-            }
+        public void Replace(int index, Card card) {
+            _cards.RemoveAt(index);
+            Add(card);
         }
 
         public List<Card> GetCards() {

@@ -6,7 +6,6 @@ namespace Entity {
         private readonly Card _card;
         private readonly GameObject _cube;
         private readonly GameObject _text;
-        private bool _inHand;
 
         public Mahjong(Card card) {
             _card = card;
@@ -26,17 +25,21 @@ namespace Entity {
             _text.transform.rotation = rotation;
         }
 
-        public void HandIn() {
-            if (_inHand) return;
-            _inHand = true;
-            _cube.AddComponent<DropCard>();
-            _cube.GetComponent<DropCard>().Serial = _card.Serial;
+        public void HandIn(int i) {
+            var dropScript = _cube.GetComponent<DropCard>();
+            if (dropScript == null) {
+                _cube.AddComponent<DropCard>();
+                _cube.GetComponent<DropCard>().Index = i;
+            } else {
+                dropScript.Index = i;
+            }
         }
 
         public void HandOut() {
-            if (!_inHand) return;
-            _inHand = false;
-            Object.Destroy(_cube.GetComponent<DropCard>());
+            var dropScript = _cube.GetComponent<DropCard>();
+            if (dropScript != null) {
+                Object.Destroy(_cube.GetComponent<DropCard>());
+            }
         }
 
         public int Serial {
