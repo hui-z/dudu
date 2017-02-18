@@ -5,12 +5,12 @@ using System.Linq;
 namespace Entity {
     public class Deck {
         private int _head;
-        private List<Card> _cards;
+        private List<Tile> _cards;
 
         private void InitializeCards() {
-            _cards = new List<Card>(Constants.DeckSize);
+            _cards = new List<Tile>(Constants.DeckSize);
             for (var serial = 0; serial < Constants.DeckSize; serial++) {
-                _cards.Add(new Card(serial));
+                _cards.Add(new Tile(serial));
             }
             var random = new Random();
             for (var i = 0; i < Constants.DeckSize; i++) {
@@ -30,7 +30,7 @@ namespace Entity {
             return _cards.Count() - _head;
         }
 
-        public Card Draw() {
+        public Tile Draw() {
             return _cards[_head++];
         }
 

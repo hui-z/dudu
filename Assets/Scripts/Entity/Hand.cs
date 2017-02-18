@@ -3,26 +3,26 @@ using System.Linq;
 
 namespace Entity {
     public class Hand {
-        private readonly List<Card> _cards;
+        private readonly List<Tile> _cards;
 
         public Hand(Deck deck) {
-            _cards = new List<Card>(Constants.HandSize);
+            _cards = new List<Tile>(Constants.HandSize);
             for (var i = 0; i < Constants.HandSize; i++) {
                 Add(deck.Draw());
             }
         }
 
-        public void Replace(int index, Card card) {
+        public void Replace(int index, Tile tile) {
             _cards.RemoveAt(index);
-            Add(card);
+            Add(tile);
         }
 
-        public List<Card> GetCards() {
+        public List<Tile> GetCards() {
             return _cards;
         }
 
-        private void Add(Card card) {
-            _cards.Add(card);
+        private void Add(Tile tile) {
+            _cards.Add(tile);
             _cards.Sort((card1, card2) => card1.Serial - card2.Serial);
         }
 

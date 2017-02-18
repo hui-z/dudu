@@ -14,7 +14,7 @@ namespace Behaviours {
             _hand = new Hand(_deck);
             _mahjongs = new Dictionary<int, Mahjong>();
             for (var i = 0; i < Constants.DeckSize; i++) {
-                _mahjongs.Add(i, new Mahjong(new Card(i)));
+                _mahjongs.Add(i, new Mahjong(new Tile(i)));
             }
             DisplayHand();
         }

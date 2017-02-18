@@ -3,19 +3,19 @@ using UnityEngine;
 
 namespace Entity {
     public class Mahjong {
-        private readonly Card _card;
+        private readonly Tile _tile;
         private readonly GameObject _cube;
         private readonly GameObject _text;
 
-        public Mahjong(Card card) {
-            _card = card;
-            var n = card.Serial;
+        public Mahjong(Tile tile) {
+            _tile = tile;
+            var n = tile.Serial;
             var rot = Quaternion.Euler(0, 0, 0);
             _cube = Object.Instantiate(Dudu.Adam, new Vector3(101 + n, 0), rot);
             _cube.name = n.ToString();
             _text = Object.Instantiate(Dudu.Eve, new Vector3(-101 - n, 0), rot);
             _text.name = "text " + n;
-            _text.GetComponent<TextMesh>().text = card.ToString();
+            _text.GetComponent<TextMesh>().text = tile.ToString();
         }
 
         public void MoveTo(Location loc) {
@@ -43,11 +43,11 @@ namespace Entity {
         }
 
         public int Serial {
-            get { return _card.Serial; }
+            get { return _tile.Serial; }
         }
 
         public override string ToString() {
-            return string.Format("Mahjong {0} {1}", _card.Serial, _card);
+            return string.Format("Mahjong {0} {1}", _tile.Serial, _tile);
         }
     }
 }

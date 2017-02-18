@@ -1,16 +1,16 @@
 ﻿namespace Entity {
-    public class Card {
+    public class Tile {
         private readonly int _suit;
         private readonly int _rank;
         private readonly int _seq;
 
-        public Card(int serial) {
+        public Tile(int serial) {
             _suit = (serial / 36) + 1;
             _rank = (serial / 4) % 9 + 1;
             _seq = serial % 4 + 1;
         }
 
-        public Card(int suit, int rank, int seq) {
+        public Tile(int suit, int rank, int seq) {
             _suit = suit;
             _rank = rank;
             _seq = seq;
