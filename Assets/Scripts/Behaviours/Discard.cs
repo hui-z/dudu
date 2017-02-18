@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace Behaviours {
-    public class DropCard : MonoBehaviour {
+    public class Discard : MonoBehaviour {
         public int Index;
 
         private void OnMouseDown() {

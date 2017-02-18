@@ -26,19 +26,19 @@ namespace Entity {
         }
 
         public void HandIn(int i) {
-            var dropScript = _cube.GetComponent<DropCard>();
+            var dropScript = _cube.GetComponent<Discard>();
             if (dropScript == null) {
-                _cube.AddComponent<DropCard>();
-                _cube.GetComponent<DropCard>().Index = i;
+                _cube.AddComponent<Discard>();
+                _cube.GetComponent<Discard>().Index = i;
             } else {
                 dropScript.Index = i;
             }
         }
 
         public void HandOut() {
-            var dropScript = _cube.GetComponent<DropCard>();
+            var dropScript = _cube.GetComponent<Discard>();
             if (dropScript != null) {
-                Object.Destroy(_cube.GetComponent<DropCard>());
+                Object.Destroy(_cube.GetComponent<Discard>());
             }
         }
 
