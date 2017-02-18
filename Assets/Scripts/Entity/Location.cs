@@ -20,8 +20,9 @@ namespace Entity {
 
         public static Location GetGroundLocation(int index) {
             var x = -8 + index % 17;
-            var y = -3 + index / 17;
-            var pos = new Vector3(x, y, 5);
+            var z = index / 17;
+            var y = -2 + 0.5f * z;
+            var pos = new Vector3(x, y, z);
             var rot = Quaternion.Euler(60, 0, 0);
             return new Location(pos, rot);
         }
