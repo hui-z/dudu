@@ -3,10 +3,14 @@ using System.Linq;
 
 namespace Entity {
     public class Hand {
-        private readonly List<Tile> _cards;
+        private readonly List<Tile> _tiles;
+
+        public List<Tile> Tiles {
+            get { return _tiles; }
+        }
 
         public Hand(Deck deck) {
-            _cards = new List<Tile>(Constants.HandSize);
+            _tiles = new List<Tile>(Constants.HandSize);
             for (var i = 0; i < Constants.HandSize; i++) {
                 Add(deck.Draw());
             }
@@ -14,27 +18,23 @@ namespace Entity {
 
         public void Discard(int serial) {
             Tile tileToRemove = null;
-            foreach (var card in _cards) {
-                if (card.Serial == serial) {
-                    tileToRemove = card;
+            foreach (var tile in _tiles) {
+                if (tile.Serial == serial) {
+                    tileToRemove = tile;
                 }
             }
             if (tileToRemove != null) {
-                _cards.Remove(tileToRemove);
+                _tiles.Remove(tileToRemove);
             }
         }
 
-        public List<Tile> GetCards() {
-            return _cards;
-        }
-
         public void Add(Tile tile) {
-            _cards.Add(tile);
-            _cards.Sort((card1, card2) => card1.Serial - card2.Serial);
+            _tiles.Add(tile);
+            _tiles.Sort((tile1, tile2) => tile1.Serial - tile2.Serial);
         }
 
         public override string ToString() {
-            return string.Join(" ", _cards.Select(x => string.Format("[{0} {1}]", x.Serial, x.ToString())).ToArray());
+            return string.Join(" ", _tiles.Select(x => string.Format("[{0} {1}]", x.Serial, x.ToString())).ToArray());
         }
     }
 }

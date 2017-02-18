@@ -25,17 +25,17 @@ namespace Behaviours {
             mahjong.HandOut();
             _hand.Discard(serial);
             _hand.Add(_deck.Draw());
-            print(string.Format("Dropping card, count {0}, card |{1}|", _dropCount, mahjong));
+            print(string.Format("Dropping tile, count {0}, tile |{1}|", _dropCount, mahjong));
             DisplayHand();
         }
 
         private void DisplayHand() {
-            var cards = _hand.GetCards();
+            var tiles = _hand.Tiles;
             print(string.Format("RonAble: [{0}], Displaying hand, size {1}, content [{2}]",
-                Condition.RonAble(_hand.GetCards()), cards.Count, _hand));
-            for (var i = 0; i < cards.Count; i++) {
-                var card = cards[i];
-                var mahjong = _mahjongs[card.Serial];
+                Condition.RonAble(_hand.Tiles), tiles.Count, _hand));
+            for (var i = 0; i < tiles.Count; i++) {
+                var tile = tiles[i];
+                var mahjong = _mahjongs[tile.Serial];
                 mahjong.MoveTo(Location.GetDeckLocation(i));
                 mahjong.HandIn(i);
             }
