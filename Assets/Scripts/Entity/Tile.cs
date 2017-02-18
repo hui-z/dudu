@@ -1,5 +1,17 @@
 ﻿namespace Entity {
     public class Tile {
+        public int Suit {
+            get { return _suit; }
+        }
+
+        public int Rank {
+            get { return _rank; }
+        }
+
+        public int Seq {
+            get { return _seq; }
+        }
+
         private readonly int _suit;
         private readonly int _rank;
         private readonly int _seq;
@@ -20,8 +32,12 @@
             get { return (_seq - 1) + (_rank - 1) * 4 + (_suit - 1) * 36; }
         }
 
+        public bool IsSequencial() {
+            return _suit < 4;
+        }
+
         public override string ToString() {
-            if (_suit < 4) {
+            if (IsSequencial()) {
                 string[] suitNames = {"萬", "条", "筒"};
                 string[] rankNames = {"一", "二", "三", "四", "五", "六", "七", "八", "九"};
                 return string.Concat(rankNames[_rank - 1], suitNames[_suit - 1]);

@@ -31,7 +31,8 @@ namespace Behaviours {
 
         private void DisplayHand() {
             var cards = _hand.GetCards();
-            print(string.Format("Displaying hand, size {0}, content [{1}]", cards.Count, _hand));
+            print(string.Format("RonAble: [{0}], Displaying hand, size {1}, content [{2}]",
+                Condition.RonAble(_hand.GetCards()), cards.Count, _hand));
             for (var i = 0; i < cards.Count; i++) {
                 var card = cards[i];
                 var mahjong = _mahjongs[card.Serial];
