@@ -19,12 +19,12 @@ namespace Behaviours {
             DisplayHand();
         }
 
-        public void DropCard(int index) {
-            var serial = _hand.GetCards()[index].Serial;
+        public void DropCard(int serial) {
             var mahjong = _mahjongs[serial];
             mahjong.MoveTo(Location.GetGroundLocation(_dropCount++));
             mahjong.HandOut();
-            _hand.Replace(index, _deck.Draw());
+            _hand.Discard(serial);
+            _hand.Add(_deck.Draw());
             print(string.Format("Dropping card, count {0}, card |{1}|", _dropCount, mahjong));
             DisplayHand();
         }

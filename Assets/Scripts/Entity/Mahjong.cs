@@ -29,9 +29,7 @@ namespace Entity {
             var dropScript = _cube.GetComponent<Discard>();
             if (dropScript == null) {
                 _cube.AddComponent<Discard>();
-                _cube.GetComponent<Discard>().Index = i;
-            } else {
-                dropScript.Index = i;
+                _cube.GetComponent<Discard>().Serial = _tile.Serial;
             }
         }
 
@@ -47,7 +45,7 @@ namespace Entity {
         }
 
         public override string ToString() {
-            return string.Format("Mahjong {0} {1}", _tile.Serial, _tile);
+            return string.Format("Mahjong {0} {1} {2}", _tile.Serial, _tile, _text.GetComponent<TextMesh>().text);
         }
     }
 }

@@ -2,10 +2,10 @@
 
 namespace Behaviours {
     public class Discard : MonoBehaviour {
-        public int Index;
+        public int Serial { get; set; }
 
         private void OnMouseDown() {
-            Dudu.God.GetComponent<Play>().DropCard(Index);
+            Dudu.God.GetComponent<Play>().DropCard(Serial);
         }
     }
 }

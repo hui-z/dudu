@@ -12,16 +12,23 @@ namespace Entity {
             }
         }
 
-        public void Replace(int index, Tile tile) {
-            _cards.RemoveAt(index);
-            Add(tile);
+        public void Discard(int serial) {
+            Tile tileToRemove = null;
+            foreach (var card in _cards) {
+                if (card.Serial == serial) {
+                    tileToRemove = card;
+                }
+            }
+            if (tileToRemove != null) {
+                _cards.Remove(tileToRemove);
+            }
         }
 
         public List<Tile> GetCards() {
             return _cards;
         }
 
-        private void Add(Tile tile) {
+        public void Add(Tile tile) {
             _cards.Add(tile);
             _cards.Sort((card1, card2) => card1.Serial - card2.Serial);
         }

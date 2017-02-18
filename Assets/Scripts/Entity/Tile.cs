@@ -17,7 +17,7 @@
         }
 
         public int Serial {
-            get { return (_seq - 1) + (_rank - 1) * 4 + (_suit - 1) * 34; }
+            get { return (_seq - 1) + (_rank - 1) * 4 + (_suit - 1) * 36; }
         }
 
         public override string ToString() {
