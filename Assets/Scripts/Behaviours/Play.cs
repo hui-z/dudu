@@ -6,6 +6,7 @@ namespace Behaviours {
     public class Play : MonoBehaviour {
         private Deck _deck;
         private Hand _hand;
+        private TempButton _zimo;
         private Dictionary<int, Mahjong> _mahjongs;
         private int _dropCount;
 
@@ -16,6 +17,7 @@ namespace Behaviours {
             for (var i = 0; i < Constants.DeckSize; i++) {
                 _mahjongs.Add(i, new Mahjong(new Tile(i)));
             }
+            _zimo = new TempButton("zimo");
             DisplayHand();
         }
 
@@ -33,6 +35,11 @@ namespace Behaviours {
             var tiles = _hand.Tiles;
             print(string.Format("RonAble: [{0}], Displaying hand, size {1}, content [{2}]",
                 Condition.RonAble(_hand.Tiles), tiles.Count, _hand));
+            if (Condition.RonAble(_hand.Tiles)) {
+                _zimo.MoveTo(new Location(new Vector3(5.5f, -2, -1)));
+            } else {
+                _zimo.MoveTo(new Location(new Vector3(100, -2, -1)));
+            }
             for (var i = 0; i < tiles.Count; i++) {
                 var tile = tiles[i];
                 var mahjong = _mahjongs[tile.Serial];

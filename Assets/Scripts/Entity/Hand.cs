@@ -17,14 +17,11 @@ namespace Entity {
         }
 
         public void Discard(int serial) {
-            Tile tileToRemove = null;
             foreach (var tile in _tiles) {
                 if (tile.Serial == serial) {
-                    tileToRemove = tile;
+                    _tiles.Remove(tile);
+                    break;
                 }
-            }
-            if (tileToRemove != null) {
-                _tiles.Remove(tileToRemove);
             }
         }
 
