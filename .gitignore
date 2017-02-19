@@ -1,6 +1,8 @@
+Build/
 Temp/
 Library/
 .idea/
 
 *proj
 *.userprefs
+.DS_Store
