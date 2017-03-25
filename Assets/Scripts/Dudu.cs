@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 
 public class Dudu {
+    private static GameObject _adam;
+    private static GameObject _eve;
+    private static GameObject _god;
+
     public static GameObject Adam {
         get {
             _adam = _adam ?? GameObject.Find("Adam");
@@ -21,8 +25,4 @@ public class Dudu {
             return _god;
         }
     }
-
-    private static GameObject _adam;
-    private static GameObject _eve;
-    private static GameObject _god;
 }

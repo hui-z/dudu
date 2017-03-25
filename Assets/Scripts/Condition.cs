@@ -24,6 +24,6 @@ public class Condition {
     }
 
     private static bool Same(params int[] numbers) {
-        return numbers.All((x) => (x == numbers[0]));
+        return numbers.All(x => x == numbers[0]);
     }
 }

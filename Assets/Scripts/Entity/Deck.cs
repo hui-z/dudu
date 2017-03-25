@@ -7,11 +7,14 @@ namespace Entity {
         private int _head;
         private List<Tile> _tiles;
 
+        public Deck() {
+            _head = 0;
+            Initialize();
+        }
+
         private void Initialize() {
             _tiles = new List<Tile>(Constants.DeckSize);
-            for (var serial = 0; serial < Constants.DeckSize; serial++) {
-                _tiles.Add(new Tile(serial));
-            }
+            for (var serial = 0; serial < Constants.DeckSize; serial++) _tiles.Add(new Tile(serial));
             var random = new Random();
             for (var i = 0; i < Constants.DeckSize; i++) {
                 var j = random.Next(Constants.DeckSize);
@@ -21,13 +24,8 @@ namespace Entity {
             }
         }
 
-        public Deck() {
-            _head = 0;
-            Initialize();
-        }
-
         public int GetSize() {
-            return _tiles.Count() - _head;
+            return _tiles.Count - _head;
         }
 
         public Tile Draw() {
@@ -35,7 +33,7 @@ namespace Entity {
         }
 
         public override string ToString() {
-            return string.Join(" ", _tiles.Select(x => string.Format("[{0} {1}]", x.Serial, x.ToString())).ToArray());
+            return string.Join(" ", _tiles.Select(x => $"[{x.Serial} {x.ToString()}]").ToArray());
         }
     }
 }

@@ -3,35 +3,28 @@ using System.Linq;
 
 namespace Entity {
     public class Hand {
-        private readonly List<Tile> _tiles;
-
-        public List<Tile> Tiles {
-            get { return _tiles; }
-        }
-
         public Hand(Deck deck) {
-            _tiles = new List<Tile>(Constants.HandSize);
-            for (var i = 0; i < Constants.HandSize; i++) {
-                Add(deck.Draw());
-            }
+            Tiles = new List<Tile>(Constants.HandSize);
+            for (var i = 0; i < Constants.HandSize; i++) Add(deck.Draw());
         }
+
+        public List<Tile> Tiles { get; }
 
         public void Discard(int serial) {
-            foreach (var tile in _tiles) {
+            foreach (var tile in Tiles)
                 if (tile.Serial == serial) {
-                    _tiles.Remove(tile);
+                    Tiles.Remove(tile);
                     break;
                 }
-            }
         }
 
         public void Add(Tile tile) {
-            _tiles.Add(tile);
-            _tiles.Sort((tile1, tile2) => tile1.Serial - tile2.Serial);
+            Tiles.Add(tile);
+            Tiles.Sort((tile1, tile2) => tile1.Serial - tile2.Serial);
         }
 
         public override string ToString() {
-            return string.Join(" ", _tiles.Select(x => string.Format("[{0} {1}]", x.Serial, x.ToString())).ToArray());
+            return string.Join(" ", Tiles.Select(x => $"[{x.Serial} {x.ToString()}]").ToArray());
         }
     }
 }

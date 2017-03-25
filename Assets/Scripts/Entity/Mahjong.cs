@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Entity {
     public class Mahjong {
-        private readonly Tile _tile;
         private readonly GameObject _cube;
         private readonly GameObject _text;
+        private readonly Tile _tile;
 
         public Mahjong(Tile tile) {
             _tile = tile;
@@ -16,6 +16,10 @@ namespace Entity {
             _text = Object.Instantiate(Dudu.Eve, new Vector3(-101 - n, 0), rot);
             _text.name = "text " + n;
             _text.GetComponent<TextMesh>().text = tile.ToString();
+        }
+
+        public int Serial {
+            get { return _tile.Serial; }
         }
 
         public void MoveTo(Location loc) {
@@ -35,17 +39,11 @@ namespace Entity {
 
         public void HandOut() {
             var dropScript = _cube.GetComponent<Discard>();
-            if (dropScript != null) {
-                Object.Destroy(_cube.GetComponent<Discard>());
-            }
-        }
-
-        public int Serial {
-            get { return _tile.Serial; }
+            if (dropScript != null) Object.Destroy(_cube.GetComponent<Discard>());
         }
 
         public override string ToString() {
-            return string.Format("Mahjong {0} {1} {2}", _tile.Serial, _tile, _text.GetComponent<TextMesh>().text);
+            return $"Mahjong {_tile.Serial} {_tile} {_text.GetComponent<TextMesh>().text}";
         }
     }
 }
