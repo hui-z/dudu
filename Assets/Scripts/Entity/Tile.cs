@@ -1,4 +1,6 @@
-﻿namespace Entity {
+﻿using UnityEngine;
+
+namespace Entity {
     public class Tile {
         public Tile(int serial) {
             Suit = serial / 36 + 1;
@@ -20,6 +22,31 @@
 
         public int Serial {
             get { return Seq - 1 + (Rank - 1) * 4 + (Suit - 1) * 36; }
+        }
+
+        public Color Color {
+            get {
+                switch (Suit) {
+                    case 1:
+                        return Color.red;
+                    case 2:
+                        return Color.green;
+                    case 3:
+                        return Color.gray;
+                }
+                switch (Rank) {
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                        return Color.blue;
+                    case 6:
+                        return Color.green;
+                    case 7:
+                        return Color.red;
+                }
+                return Color.white;
+            }
         }
 
         public bool IsSequencial() {

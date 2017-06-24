@@ -15,7 +15,9 @@ namespace Entity {
             _cube.name = n.ToString();
             _text = Object.Instantiate(Dudu.Eve, new Vector3(-101 - n, 0), rot);
             _text.name = "text " + n;
-            _text.GetComponent<TextMesh>().text = tile.ToString();
+            var textMesh = _text.GetComponent<TextMesh>();
+            textMesh.text = tile.ToString();
+            textMesh.color = tile.Color;
         }
 
         public int Serial {
