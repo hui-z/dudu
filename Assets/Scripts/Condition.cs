@@ -12,6 +12,7 @@ public class Condition {
 
     public static bool RonAble(List<Tile> tiles) {
         if (tiles.Count % 3 != 2 || tiles.Count != Constants.HandSize) return false;
+        if (IsAllPairs(tiles)) return true;
         for (var i = 0; i < Constants.HandSize; i += 3) {
             var ronAble = Same(tiles[i].Suit, tiles[i].Suit) && Same(tiles[i].Rank, tiles[i + 1].Rank);
             for (var j = 0; j < Constants.HandSize; j += 3) {
@@ -25,5 +26,16 @@ public class Condition {
 
     private static bool Same(params int[] numbers) {
         return numbers.All(x => x == numbers[0]);
+    }
+
+    private static bool IsAllPairs(List<Tile> tiles) {
+        tiles.Sort();
+        if (tiles.Count % 2 != 0 || tiles.Count != Constants.HandSize) return false;
+        for (var i = 0; i < Constants.HandSize; i += 2) if (tiles[i].Suit != tiles[i + 1].Suit || tiles[i].Rank != tiles[i + 1].Rank) return false;
+        return true;
+    }
+
+    public static bool IsOrphan(Tile tile) {
+        return tile.Suit == 4 || tile.Rank == 1 || tile.Rank == 9;
     }
 }
