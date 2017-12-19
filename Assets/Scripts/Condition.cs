@@ -29,7 +29,7 @@ public class Condition {
     }
 
     private static bool IsAllPairs(List<Tile> tiles) {
-        tiles.Sort();
+        tiles = tiles.OrderBy(x => x.Serial).ToList();
         if (tiles.Count % 2 != 0 || tiles.Count != Constants.HandSize) return false;
         for (var i = 0; i < Constants.HandSize; i += 2) if (tiles[i].Suit != tiles[i + 1].Suit || tiles[i].Rank != tiles[i + 1].Rank) return false;
         return true;
